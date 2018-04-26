@@ -57,6 +57,7 @@ public class MemberController implements MemberDAO{
    
     @Override
     public ArrayList<Member> retreiveMemberByFirstName(String firstName) {
+        
         String sql = "{CALL retreive_member_by_first_name(?)}";
      CallableStatement statement = null;
         ResultSet rs = null;
@@ -73,6 +74,43 @@ public class MemberController implements MemberDAO{
             String major = rs.getString("member_major");
             String email = rs.getString("member_email");
             Member temp = new Member(firstName, lastName, position, year, major, email);
+            members.add(temp);
+                System.out.println(members);
+            return members;
+            }
+            
+           
+           
+            
+        }
+        catch (SQLException ex)
+        {
+            System.out.println("Error creating connection in retreive by first name: " + ex.getMessage());
+            
+        }
+       return null;
+    }
+    
+    public ArrayList<Member>retrieveAllMembers(){
+        
+        String sql = "Select * from member";
+     PreparedStatement statement = null;
+        ResultSet rs = null;
+       try(Connection conn = MySQLJDBCUtil.getConnection())         
+        {
+            
+            statement = conn.prepareStatement(sql);
+            rs = statement.executeQuery();
+            while(rs.next()){
+              
+            String firstName = rs.getString("member_firstname");
+            String lastName = rs.getString("member_lastname");
+            String position = rs.getString("member_position");
+            String year = rs.getString("member_year");
+            String major = rs.getString("member_major");
+            String email = rs.getString("member_email");
+            Member temp = new Member(firstName, lastName, position, year, major, email);
+                System.out.println(temp);
             members.add(temp);
             return members;
             }

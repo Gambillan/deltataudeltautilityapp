@@ -22,7 +22,8 @@ public class ViewMemberPanel extends javax.swing.JPanel {
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -39,7 +40,7 @@ public class ViewMemberPanel extends javax.swing.JPanel {
         retreiveMemberButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         viewMemberTable = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        getAllMembersButton = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(102, 51, 153));
 
@@ -66,26 +67,37 @@ public class ViewMemberPanel extends javax.swing.JPanel {
         positionComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "President", "Vice President", "Secretary", "Treasurer", "Recruitment", "DAA", "Sergant at Arms" }));
 
         retreiveMemberButton.setText("Retreive Members");
-        retreiveMemberButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        retreiveMemberButton.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 retreiveMemberButtonActionPerformed(evt);
             }
         });
 
         viewMemberTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
+            new Object [][]
+            {
                 {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null}
             },
-            new String [] {
+            new String []
+            {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
         jScrollPane1.setViewportView(viewMemberTable);
 
-        jButton1.setText("Get All Members");
+        getAllMembersButton.setText("Get All Members");
+        getAllMembersButton.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                getAllMembersButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -136,7 +148,7 @@ public class ViewMemberPanel extends javax.swing.JPanel {
                 .addGap(247, 247, 247)
                 .addComponent(retreiveMemberButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
+                .addComponent(getAllMembersButton)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -165,7 +177,7 @@ public class ViewMemberPanel extends javax.swing.JPanel {
                 .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(retreiveMemberButton)
-                    .addComponent(jButton1))
+                    .addComponent(getAllMembersButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 462, Short.MAX_VALUE)
                 .addContainerGap())
@@ -175,21 +187,48 @@ public class ViewMemberPanel extends javax.swing.JPanel {
     private void retreiveMemberButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_retreiveMemberButtonActionPerformed
         if (!firstNameTextField.getText().equals("")) {
             ArrayList<Member> members = mc.retreiveMemberByFirstName(firstNameTextField.getText());
+            System.out.println(members);
             Object[]row = new Object[6];
             for(int i = 0; i < members.size();i++){
                 Member m = members.get(i);
-                row[0] = m.getFirstName();
-                row[1] = m.getLastName();
-                row[2] = m.getPosition();
-                row[3] = m.getYear();
-                row[4] = m.getMajor();
-                row[5] = m.getEmail();
+                row[0] = members.get(i).getFirstName();
+                row[1] = members.get(i).getLastName();
+                row[2] = members.get(i).getPosition();
+                row[3] = members.get(i).getYear();
+                row[4] = members.get(i).getMajor();
+                row[5] = members.get(i).getMajor();
+                
             }
             model.addRow(row);
         }
+        revalidate();
+        repaint();
+        
 
 
     }//GEN-LAST:event_retreiveMemberButtonActionPerformed
+
+    private void getAllMembersButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_getAllMembersButtonActionPerformed
+    {//GEN-HEADEREND:event_getAllMembersButtonActionPerformed
+        
+            ArrayList<Member> members = mc.retrieveAllMembers();
+            
+            Object[]row = new Object[6];
+            for(int i = 0; i < members.size();i++){
+                Member m = members.get(i);
+                row[0] = members.get(i).getFirstName();
+                row[1] = members.get(i).getLastName();
+                row[2] = members.get(i).getPosition();
+                row[3] = members.get(i).getYear();
+                row[4] = members.get(i).getMajor();
+                row[5] = members.get(i).getMajor();
+                
+            }
+            model.addRow(row);
+        
+        revalidate();
+        repaint();
+    }//GEN-LAST:event_getAllMembersButtonActionPerformed
     public int getSelectedYear(Member member) {
         int yearSelected = 0;
         if (member.getYear().equals("Freshman")) {
@@ -232,7 +271,7 @@ public class ViewMemberPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField emailTextField;
     private javax.swing.JTextField firstNameTextField;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton getAllMembersButton;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
