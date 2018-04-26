@@ -9,6 +9,7 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import javax.imageio.ImageIO;
+import javax.swing.SwingUtilities;
 
 /**
  *
@@ -17,32 +18,28 @@ import javax.imageio.ImageIO;
 public class StartScreenPanel extends javax.swing.JPanel {
 
     BufferedImage logo;
-    
+    PanelManager pm;
+
     public StartScreenPanel() {
         initComponents();
-        
-        try
-        {
+
+        try {
             logo = ImageIO.read(getClass().getResource("/images/deltlogoscaled.png"));
-        } catch (IOException ex)
-        {
+        } catch (IOException ex) {
             System.out.println("Error loading logo: " + ex.getMessage());
         }
     }
-    
-    
+
     @Override
-    public void paintComponent(Graphics g){
+    public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.drawImage(logo,175,150 , this);
-        
+        g.drawImage(logo, 175, 150, this);
+
     }
 
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents()
-    {
+    private void initComponents() {
 
         viewMemberButton = new javax.swing.JButton();
         addMemberButton = new javax.swing.JButton();
@@ -53,19 +50,32 @@ public class StartScreenPanel extends javax.swing.JPanel {
         setBackground(new java.awt.Color(102, 51, 153));
 
         viewMemberButton.setText("View Member Roster");
-        viewMemberButton.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        viewMemberButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 viewMemberButtonActionPerformed(evt);
             }
         });
 
         addMemberButton.setText("Add/Update Member Roster");
+        addMemberButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addMemberButtonActionPerformed(evt);
+            }
+        });
 
         viewTasksButton.setText("View Tasks");
+        viewTasksButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewTasksButtonActionPerformed(evt);
+            }
+        });
 
         addTasksButton.setText("Add/Update Tasks");
+        addTasksButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addTasksButtonActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Impact", 0, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 223, 0));
@@ -109,9 +119,28 @@ public class StartScreenPanel extends javax.swing.JPanel {
 
     private void viewMemberButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_viewMemberButtonActionPerformed
     {//GEN-HEADEREND:event_viewMemberButtonActionPerformed
-        
+        DeltaFrame mainFrame = (DeltaFrame) SwingUtilities.getWindowAncestor((MainPanel) this.getParent());
+        pm = mainFrame.getPanelManager();
+        pm.goToPanel(1);
     }//GEN-LAST:event_viewMemberButtonActionPerformed
 
+    private void addMemberButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addMemberButtonActionPerformed
+        DeltaFrame mainFrame = (DeltaFrame) SwingUtilities.getWindowAncestor((MainPanel) this.getParent());
+        pm = mainFrame.getPanelManager();
+        pm.goToPanel(2);
+    }//GEN-LAST:event_addMemberButtonActionPerformed
+
+    private void viewTasksButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewTasksButtonActionPerformed
+        DeltaFrame mainFrame = (DeltaFrame) SwingUtilities.getWindowAncestor((MainPanel) this.getParent());
+        pm = mainFrame.getPanelManager();
+        pm.goToPanel(3);
+    }//GEN-LAST:event_viewTasksButtonActionPerformed
+
+    private void addTasksButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addTasksButtonActionPerformed
+        DeltaFrame mainFrame = (DeltaFrame) SwingUtilities.getWindowAncestor((MainPanel) this.getParent());
+        pm = mainFrame.getPanelManager();
+        pm.goToPanel(4);
+    }//GEN-LAST:event_addTasksButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addMemberButton;
@@ -120,4 +149,5 @@ public class StartScreenPanel extends javax.swing.JPanel {
     private javax.swing.JButton viewMemberButton;
     private javax.swing.JButton viewTasksButton;
     // End of variables declaration//GEN-END:variables
+
 }
