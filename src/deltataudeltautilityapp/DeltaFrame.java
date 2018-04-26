@@ -12,11 +12,17 @@ public class DeltaFrame extends javax.swing.JFrame {
         this.setLayout(new GridLayout(0, 1, 1, 0));
         pm = mainPanel1.getPanelManager();
     }
+    
+    public PanelManager getPanelManager(){
+        PanelManager pm = mainPanel1.getPanelManager();
+        return pm;
+    }
 
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         mainPanel1 = new deltataudeltautilityapp.MainPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -32,40 +38,50 @@ public class DeltaFrame extends javax.swing.JFrame {
         jMenu1.setText("View");
 
         startScreenMenuItem.setText("Start Screen");
-        startScreenMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        startScreenMenuItem.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 startScreenMenuItemActionPerformed(evt);
             }
         });
         jMenu1.add(startScreenMenuItem);
 
         viewMemberMenuItem.setText("view member");
-        viewMemberMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        viewMemberMenuItem.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 viewMemberMenuItemActionPerformed(evt);
             }
         });
         jMenu1.add(viewMemberMenuItem);
 
         addMemberMenuItem.setText("Add member");
-        addMemberMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        addMemberMenuItem.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 addMemberMenuItemActionPerformed(evt);
             }
         });
         jMenu1.add(addMemberMenuItem);
 
         viewTaskMenuItem.setText("view task");
-        viewTaskMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        viewTaskMenuItem.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 viewTaskMenuItemActionPerformed(evt);
             }
         });
         jMenu1.add(viewTaskMenuItem);
 
         addTaskMenuItem.setText("add task");
-        addTaskMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        addTaskMenuItem.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 addTaskMenuItemActionPerformed(evt);
             }
         });
