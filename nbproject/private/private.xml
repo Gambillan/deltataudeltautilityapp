@@ -3,8 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/gambila/Documents/NetBeansProjects/DeltaTauDeltaUtilityApp/src/deltataudeltautilityapp/AddMemberPanel.java</file>
             <file>file:/C:/Users/gambila/Documents/NetBeansProjects/DeltaTauDeltaUtilityApp/src/deltataudeltautilityapp/ViewMemberPanel.java</file>
+=======
+            <file>file:/C:/Users/Andrew%20Gambill/Documents/NetBeansProjects/DeltaTauDeltaUtilityApp/src/deltataudeltautilityapp/StartScreenPanel.java</file>
+            <file>file:/C:/Users/Andrew%20Gambill/Documents/NetBeansProjects/DeltaTauDeltaUtilityApp/src/deltataudeltautilityapp/MemberController.java</file>
+            <file>file:/C:/Users/Andrew%20Gambill/Documents/NetBeansProjects/DeltaTauDeltaUtilityApp/src/deltataudeltautilityapp/ViewMemberPanel.java</file>
+>>>>>>> 519a58708a6da712645da675a625e7d77f7f6ce6
         </group>
     </open-files>
 </project-private>

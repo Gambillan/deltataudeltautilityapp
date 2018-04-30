@@ -22,7 +22,8 @@ public class ViewMemberPanel extends javax.swing.JPanel {
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -66,28 +67,39 @@ public class ViewMemberPanel extends javax.swing.JPanel {
         positionComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "President", "Vice President", "Secretary", "Treasurer", "Recruitment", "DAA", "Sergant at Arms" }));
 
         retreiveMemberButton.setText("Retreive Members");
-        retreiveMemberButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        retreiveMemberButton.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 retreiveMemberButtonActionPerformed(evt);
             }
         });
 
         viewMemberTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
+            new Object [][]
+            {
                 {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null}
             },
-            new String [] {
+            new String []
+            {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
         jScrollPane1.setViewportView(viewMemberTable);
 
         getAllMembersButton.setText("Get All Members");
+<<<<<<< HEAD
         getAllMembersButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
+=======
+        getAllMembersButton.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+>>>>>>> 519a58708a6da712645da675a625e7d77f7f6ce6
                 getAllMembersButtonActionPerformed(evt);
             }
         });
@@ -181,9 +193,11 @@ public class ViewMemberPanel extends javax.swing.JPanel {
          viewMemberTable.setModel(model);
         if (!firstNameTextField.getText().equals("")) {
             ArrayList<Member> members = mc.retreiveMemberByFirstName(firstNameTextField.getText());
+            System.out.println(members);
             Object[]row = new Object[6];
             for(int i = 0; i < members.size();i++){
                 Member m = members.get(i);
+<<<<<<< HEAD
                 row[0] = m.getFirstName();
                 row[1] = m.getLastName();
                 row[2] = m.getPosition();
@@ -191,6 +205,15 @@ public class ViewMemberPanel extends javax.swing.JPanel {
                 row[4] = m.getMajor();
                 row[5] = m.getEmail();
                 model.addRow(row);
+=======
+                row[0] = members.get(i).getFirstName();
+                row[1] = members.get(i).getLastName();
+                row[2] = members.get(i).getPosition();
+                row[3] = members.get(i).getYear();
+                row[4] = members.get(i).getMajor();
+                row[5] = members.get(i).getMajor();
+                
+>>>>>>> 519a58708a6da712645da675a625e7d77f7f6ce6
             }
             
             revalidate();
@@ -214,10 +237,14 @@ public class ViewMemberPanel extends javax.swing.JPanel {
             revalidate();
             repaint();
         }
+        revalidate();
+        repaint();
+        
 
 
     }//GEN-LAST:event_retreiveMemberButtonActionPerformed
 
+<<<<<<< HEAD
     private void getAllMembersButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getAllMembersButtonActionPerformed
         
         ArrayList<Member> members = mc.retreiveAllMembers();
@@ -236,6 +263,28 @@ public class ViewMemberPanel extends javax.swing.JPanel {
             
             revalidate();
             repaint();
+=======
+    private void getAllMembersButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_getAllMembersButtonActionPerformed
+    {//GEN-HEADEREND:event_getAllMembersButtonActionPerformed
+        
+            ArrayList<Member> members = mc.retrieveAllMembers();
+            
+            Object[]row = new Object[6];
+            for(int i = 0; i < members.size();i++){
+                Member m = members.get(i);
+                row[0] = members.get(i).getFirstName();
+                row[1] = members.get(i).getLastName();
+                row[2] = members.get(i).getPosition();
+                row[3] = members.get(i).getYear();
+                row[4] = members.get(i).getMajor();
+                row[5] = members.get(i).getMajor();
+                
+            }
+            model.addRow(row);
+        
+        revalidate();
+        repaint();
+>>>>>>> 519a58708a6da712645da675a625e7d77f7f6ce6
     }//GEN-LAST:event_getAllMembersButtonActionPerformed
     public int getSelectedYear(Member member) {
         int yearSelected = 0;
