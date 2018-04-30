@@ -39,7 +39,7 @@ public class ViewMemberPanel extends javax.swing.JPanel {
         retreiveMemberButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         viewMemberTable = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        getAllMembersButton = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(102, 51, 153));
 
@@ -85,7 +85,12 @@ public class ViewMemberPanel extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(viewMemberTable);
 
-        jButton1.setText("Get All Members");
+        getAllMembersButton.setText("Get All Members");
+        getAllMembersButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                getAllMembersButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -136,7 +141,7 @@ public class ViewMemberPanel extends javax.swing.JPanel {
                 .addGap(247, 247, 247)
                 .addComponent(retreiveMemberButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
+                .addComponent(getAllMembersButton)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -165,7 +170,7 @@ public class ViewMemberPanel extends javax.swing.JPanel {
                 .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(retreiveMemberButton)
-                    .addComponent(jButton1))
+                    .addComponent(getAllMembersButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 462, Short.MAX_VALUE)
                 .addContainerGap())
@@ -173,6 +178,7 @@ public class ViewMemberPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void retreiveMemberButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_retreiveMemberButtonActionPerformed
+         viewMemberTable.setModel(model);
         if (!firstNameTextField.getText().equals("")) {
             ArrayList<Member> members = mc.retreiveMemberByFirstName(firstNameTextField.getText());
             Object[]row = new Object[6];
@@ -184,12 +190,53 @@ public class ViewMemberPanel extends javax.swing.JPanel {
                 row[3] = m.getYear();
                 row[4] = m.getMajor();
                 row[5] = m.getEmail();
+                model.addRow(row);
             }
-            model.addRow(row);
+            
+            revalidate();
+            repaint();
+            
+        }
+        else if(!lastNameTextField.getText().equals("")){
+            ArrayList<Member> members = mc.retreiveMemberByLastName(lastNameTextField.getText());
+            Object[]row = new Object[6];
+            for(int i = 0; i < members.size();i++){
+                Member m = members.get(i);
+                row[0] = m.getFirstName();
+                row[1] = m.getLastName();
+                row[2] = m.getPosition();
+                row[3] = m.getYear();
+                row[4] = m.getMajor();
+                row[5] = m.getEmail();
+                model.addRow(row);
+            }
+            
+            revalidate();
+            repaint();
         }
 
 
     }//GEN-LAST:event_retreiveMemberButtonActionPerformed
+
+    private void getAllMembersButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getAllMembersButtonActionPerformed
+        
+        ArrayList<Member> members = mc.retreiveAllMembers();
+            Object[]row = new Object[6];
+            for(int i = 0; i < members.size();i++){
+                Member m = members.get(i);
+                System.out.println(members.get(i));
+                row[0] = m.getFirstName();
+                row[1] = m.getLastName();
+                row[2] = m.getPosition();
+                row[3] = m.getYear();
+                row[4] = m.getMajor();
+                row[5] = m.getEmail();
+                model.addRow(row);
+            }
+            
+            revalidate();
+            repaint();
+    }//GEN-LAST:event_getAllMembersButtonActionPerformed
     public int getSelectedYear(Member member) {
         int yearSelected = 0;
         if (member.getYear().equals("Freshman")) {
@@ -232,7 +279,7 @@ public class ViewMemberPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField emailTextField;
     private javax.swing.JTextField firstNameTextField;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton getAllMembersButton;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

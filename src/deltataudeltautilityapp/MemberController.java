@@ -180,9 +180,9 @@ public class MemberController implements MemberDAO{
             String lastName = rs.getString("member_lastname");
             Member temp = new Member(firstName, lastName, position, year, major, email);
             members.add(temp);
-            return members;
-            }
             
+            }
+            return members;
            
            
             
@@ -235,6 +235,40 @@ public class MemberController implements MemberDAO{
         {
             System.out.println("Error creating connection in insertNewMember: " + ex.getMessage());
             return -1;
+        }
+    }
+    
+    public ArrayList<Member> retreiveAllMembers(){
+        String sql = "{CALL retreive_all_members()}";
+        CallableStatement statement = null;
+        ResultSet rs = null;
+        ArrayList<Member>members = new ArrayList<>();
+                
+       try(Connection conn = MySQLJDBCUtil.getConnection())         
+        {
+            
+            statement = conn.prepareCall(sql);
+            int numberEffected = statement.executeUpdate();
+            System.out.println("Rows effected on insert:  " + numberEffected);
+            rs = statement.executeQuery();
+            while(rs.next()){
+                String fn = rs.getString("member_firstname");
+                String ln = rs.getString("member_lastname");
+                String position = rs.getString("member_position");
+                String year = rs.getString("member_year");
+                String major = rs.getString("member_major");
+                String email = rs.getString("member_email");
+                Member temp = new Member(fn, ln, position, year, major, email);
+                members.add(temp);       
+            }
+            System.out.println(members);
+            return members;
+            
+        }
+        catch (SQLException ex)
+        {
+            System.out.println("Error creating connection in insertNewMember: " + ex.getMessage());
+            return null;
         }
     }
     
